@@ -23,7 +23,7 @@ namespace GGL {
 		// 2.0 = Run the game twice as fast as real time
 		// 10.0 = Run the game ten times as fast as real time
 
-		float renderTimeScale = 10.0f; 
+		float renderTimeScale = 1.0f; 
 
 		PPOLearnerConfig ppo = {};
 
