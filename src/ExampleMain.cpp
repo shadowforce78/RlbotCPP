@@ -127,12 +127,12 @@ int main(int argc, char *argv[])
 	cfg.actionDelay = cfg.tickSkip - 1; // Normal value in other RLGym frameworks
 
 	// Play around with this to see what the optimal is for your machine, more games will consume more RAM
-	// Increased to 500 to better utilize GPU
-	cfg.numGames = 500;
+	// Increased to 750 to better utilize GPU
+	cfg.numGames = 750;
 
 	// Leave this empty to use a random seed each run
 	// The random seed can have a strong effect on the outcome of a run
-	cfg.randomSeed = 123;
+	cfg.randomSeed = -1;
 
 	int tsPerItr = 100'000;
 	cfg.ppo.tsPerItr = tsPerItr;
@@ -141,7 +141,7 @@ int main(int argc, char *argv[])
 
 	// Using 2 epochs seems pretty optimal when comparing time training to skill
 	// Perhaps 1 or 3 is better for you, test and find out!
-	cfg.ppo.epochs = 2;
+	cfg.ppo.epochs = 3;
 
 	// This scales differently than "ent_coef" in other frameworks
 	// This is the scale for normalized entropy, which means you won't have to change it if you add more actions
