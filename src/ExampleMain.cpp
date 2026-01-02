@@ -141,7 +141,7 @@ int main(int argc, char *argv[])
 
 	// Using 2 epochs seems pretty optimal when comparing time training to skill
 	// Perhaps 1 or 3 is better for you, test and find out!
-	cfg.ppo.epochs = 3;
+	cfg.ppo.epochs = 2;
 
 	// This scales differently than "ent_coef" in other frameworks
 	// This is the scale for normalized entropy, which means you won't have to change it if you add more actions
@@ -174,6 +174,10 @@ int main(int argc, char *argv[])
 	cfg.ppo.critic.addLayerNorm = addLayerNorm;
 	cfg.ppo.sharedHead.addLayerNorm = addLayerNorm;
 
+	cfg.standardizeObs = true;
+	cfg.trainAgainstOldVersions = true;
+	cfg.trainAgainstOldChance = 0.2f;
+
 	cfg.sendMetrics = true; // Send metrics
 	cfg.renderMode = false; // Don't render
 
@@ -181,7 +185,7 @@ int main(int argc, char *argv[])
 	{
 		if (std::string(argv[i]) == "--render")
 		{
-			cfg.sendMetrics = false;	  // No need to log metrics from a render instance
+			cfg.sendMetrics = true;	  // No need to log metrics from a render instance
 			cfg.ppo.deterministic = true; // True: see bot at its best, False: see how it plays while learning
 			cfg.renderMode = true;
 			break;
