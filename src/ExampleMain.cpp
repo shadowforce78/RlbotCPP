@@ -174,10 +174,6 @@ int main(int argc, char *argv[])
 	cfg.ppo.critic.addLayerNorm = addLayerNorm;
 	cfg.ppo.sharedHead.addLayerNorm = addLayerNorm;
 
-	cfg.standardizeObs = true;
-	cfg.trainAgainstOldVersions = true;
-	cfg.trainAgainstOldChance = 0.2f;
-
 	cfg.sendMetrics = true; // Send metrics
 	cfg.renderMode = false; // Don't render
 
@@ -185,7 +181,7 @@ int main(int argc, char *argv[])
 	{
 		if (std::string(argv[i]) == "--render")
 		{
-			cfg.sendMetrics = true;	  // No need to log metrics from a render instance
+			cfg.sendMetrics = false;	  // No need to log metrics from a render instance
 			cfg.ppo.deterministic = true; // True: see bot at its best, False: see how it plays while learning
 			cfg.renderMode = true;
 			break;
