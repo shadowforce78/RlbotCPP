@@ -23,7 +23,7 @@ EnvCreateResult EnvCreateFunc(int index)
 
 		// Movement
 		{new AirReward(), 0.25f},
-		{new AerialReward(), 1.0f},
+		{new AerialReward(), 1.25f},
 
 		// Player-ball
 		{new FaceBallReward(), 0.25f},
@@ -36,7 +36,7 @@ EnvCreateResult EnvCreateFunc(int index)
 
 		// Boost
 		{new PickupBoostReward(), 10.f},
-		{new SaveBoostReward(), 0.2f},
+		{new SaveBoostReward(), 0.5f},
 
 		// Advanced Mechanics
 		{new FlipResetReward(), 1.0f},
@@ -47,7 +47,7 @@ EnvCreateResult EnvCreateFunc(int index)
 		// Strategic
 		{new StrategicDemoReward(), 1.0f},
 		{new StrategicDribbleBumpReward(), 1.0f},
-		{new KickoffProximityReward2v2(), 1.0f},
+		{new KickoffProximityReward2v2(), 1.5f},
 
 		// Game events
 		{new ZeroSumReward(new BumpReward(), 0.5f), 20},
