@@ -28,7 +28,7 @@ namespace GGL {
 
 		// Use half-precision models for inference
 		// This is much faster on GPU, not so much for CPU
-		bool useHalfPrecision = false;
+		bool useHalfPrecision = true;
 
 		PartialModelConfig policy, critic, sharedHead;
 
