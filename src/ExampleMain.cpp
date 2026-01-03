@@ -18,41 +18,44 @@ using namespace RLGC; // RLGymCPP
 // Create the RLGymCPP environment for each of our games
 EnvCreateResult EnvCreateFunc(int index)
 {
-	// These are ok rewards that will produce a scoring bot in ~100m steps
+	// PHASE 1: Focus on fundamentals first - advanced mechanics later!
+	// At 36k steps, the bot should learn basics before tricks too much flip resets, etc
 	std::vector<WeightedReward> rewards = {
 
-		// Movement
-		{new AirReward(), 0.25f},
-		{new AerialReward(), 1.25f},
+		// ============ CORE GAMEPLAY (HIGHEST PRIORITY) ============
+		// Ball-goal - This should be the PRIMARY objective
+		{new ZeroSumReward(new VelocityBallToGoalReward(), 1), 8.0f},  // Increased from 2.0!
+		{new GoalReward(), 200},  // Increased from 150
 
-		// Player-ball
-		{new FaceBallReward(), 0.25f},
-		{new VelocityPlayerToBallReward(), 4.f},
-		{new StrongTouchReward(20, 100), 60},
-		{new DistToBallReward(), 0.1f},
+		// Player-ball fundamentals
+		{new FaceBallReward(), 0.5f},
+		{new VelocityPlayerToBallReward(), 3.0f},  // Reduced slightly
+		{new StrongTouchReward(20, 100), 40},     // Reduced from 60
+		{new DistToBallReward(), 0.05f},          // Reduced - don't ballchase too much
 
-		// Ball-goal
-		{new ZeroSumReward(new VelocityBallToGoalReward(), 1), 2.0f},
+		// ============ TEAMPLAY & POSITIONING ============
+		// Strategic positioning
+		{new KickoffProximityReward2v2(), 1.5f},
+		{new StrategicDemoReward(), 0.5f},        // Reduced
+		{new StrategicDribbleBumpReward(), 0.3f}, // Reduced
 
-		// Boost
-		{new PickupBoostReward(), 10.f},
+		// ============ MOVEMENT & BOOST ============
+		{new AirReward(), 0.15f},    // Reduced - don't reward air for air's sake
+		{new AerialReward(), 0.5f},  // Reduced from 1.25 - reward aerials less
+		{new PickupBoostReward(), 8.f},
 		{new SaveBoostReward(), 0.5f},
 
-		// Advanced Mechanics
-		{new FlipResetReward(), 1.0f},
-		{new MawkzyFlickReward(), 1.0f},
-		{new AirDribbleWithRollReward(), 1.0f},
-		{new DoubleTapReward(), 1.0f},
+		// ============ ADVANCED MECHANICS (DISABLED FOR NOW) ============
+		// These should be introduced LATER (after 500k-1M steps) when basics are solid
+		// Uncomment progressively as the bot masters fundamentals
+		// {new FlipResetReward(), 0.1f},        // MUCH lower weight, or disable
+		// {new MawkzyFlickReward(), 0.1f},      // DISABLED for now
+		// {new AirDribbleWithRollReward(), 0.1f}, // DISABLED for now
+		// {new DoubleTapReward(), 0.2f},        // DISABLED for now
 
-		// Strategic
-		{new StrategicDemoReward(), 1.0f},
-		{new StrategicDribbleBumpReward(), 1.0f},
-		{new KickoffProximityReward2v2(), 1.5f},
-
-		// Game events
-		{new ZeroSumReward(new BumpReward(), 0.5f), 20},
-		{new ZeroSumReward(new DemoReward(), 0.5f), 80},
-		{new GoalReward(), 150}};
+		// ============ GAME EVENTS ============
+		{new ZeroSumReward(new BumpReward(), 0.5f), 15},   // Slightly reduced
+		{new ZeroSumReward(new DemoReward(), 0.5f), 60}};  // Reduced from 80
 
 	std::vector<TerminalCondition *> terminalConditions = {
 		new NoTouchCondition(10),
