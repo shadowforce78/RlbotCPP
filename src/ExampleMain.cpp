@@ -19,7 +19,7 @@ using namespace RLGC; // RLGymCPP
 EnvCreateResult EnvCreateFunc(int index)
 {
 	// PHASE 1: Focus on fundamentals first - advanced mechanics later!
-	// At low (<500k) steps, the bot should learn basics before tricks too much flip resets, etc
+	// At low (<500m) steps, the bot should learn basics before tricks too much flip resets, etc
 	std::vector<WeightedReward> rewards = {
 
 		// ============ CORE GAMEPLAY (HIGHEST PRIORITY) ============
@@ -46,7 +46,7 @@ EnvCreateResult EnvCreateFunc(int index)
 		{new SaveBoostReward(), 0.5f},
 
 		// ============ ADVANCED MECHANICS (DISABLED FOR NOW) ============
-		// These should be introduced LATER (after 500k-1M steps) when basics are solid
+		// These should be introduced LATER (after 500m-1B steps) when basics are solid
 		// Uncomment progressively as the bot masters fundamentals
 		// {new FlipResetReward(), 0.1f},        // MUCH lower weight, or disable
 		// {new MawkzyFlickReward(), 0.1f},      // DISABLED for now
