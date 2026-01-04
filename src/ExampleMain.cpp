@@ -30,7 +30,7 @@ EnvCreateResult EnvCreateFunc(int index)
 		// Player-ball fundamentals
 		{new FaceBallReward(), 0.5f},
 		{new VelocityPlayerToBallReward(), 5.0f},  // Augmented slightly - need to play actively with the ball to reach ssl lmao
-		{new StrongTouchReward(20, 100), 60},     // Strengthened to reward solid hits more
+		{new StrongTouchReward(20, 100), 80},     // Strengthened to reward solid hits more
 		{new DistToBallReward(), 0.1f},          // Still the same - but don't ballchase too much
 
 		// ============ TEAMPLAY & POSITIONING ============
@@ -40,10 +40,10 @@ EnvCreateResult EnvCreateFunc(int index)
 		{new StrategicDribbleBumpReward(), 0.3f}, // Reduced
 
 		// ============ MOVEMENT & BOOST ============
-		{new AirReward(), 0.15f},    // Reduced - don't reward air for air's sake
-		{new AerialReward(), 0.5f},  // Reduced from 1.25 - reward aerials less
+		{new AirReward(), 0.1f},    // Reduced - don't reward air for air's sake
+		{new AerialReward(), 0.1f},  // Reduced from 1.25 - reward aerials less
 		{new PickupBoostReward(), 8.f},
-		{new SaveBoostReward(), 0.5f},
+		{new SaveBoostReward(), 0.6f},
 
 		// ============ ADVANCED MECHANICS (DISABLED FOR NOW) ============
 		// These should be introduced LATER (after 500m-1B steps) when basics are solid
