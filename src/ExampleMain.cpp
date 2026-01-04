@@ -29,9 +29,9 @@ EnvCreateResult EnvCreateFunc(int index)
 
 		// Player-ball fundamentals
 		{new FaceBallReward(), 0.5f},
-		{new VelocityPlayerToBallReward(), 3.0f},  // Reduced slightly
-		{new StrongTouchReward(20, 100), 40},     // Reduced from 60
-		{new DistToBallReward(), 0.05f},          // Reduced - don't ballchase too much
+		{new VelocityPlayerToBallReward(), 5.0f},  // Augmented slightly - need to play actively with the ball to reach ssl lmao
+		{new StrongTouchReward(20, 100), 60},     // Strengthened to reward solid hits more
+		{new DistToBallReward(), 0.1f},          // Still the same - but don't ballchase too much
 
 		// ============ TEAMPLAY & POSITIONING ============
 		// Strategic positioning
